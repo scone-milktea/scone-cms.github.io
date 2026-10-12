@@ -37,6 +37,20 @@
     h1 { margin:0; color:#8599bc; background:linear-gradient(90deg,#e0d3f2,#8599bc); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; font-size:clamp(28px,4.5vw,44px); line-height:1.25; letter-spacing:-.06em; font-family:"NostalgicDongguri","Pretendard",sans-serif; }
     .subtitle { position:relative; top:-3px; margin:0; color:#9b9ab2; font-size:calc(22px - 2pt); font-family:"Pretendard",sans-serif; }
     .grid { display:grid; grid-template-columns:1fr; gap:16px; }
+    .samples { margin:0 0 28px; }
+    .samples-title { margin:0 0 14px; color:#4e4568; font-size:22px; }
+    .sample-page[hidden] { display:none; }
+    .sample-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:14px; }
+    .sample-link,.sample-placeholder { display:block; overflow:hidden; aspect-ratio:1/1; border:1px solid rgba(255,255,255,.9); border-radius:16px; background:#fff; box-shadow:0 8px 22px rgba(93,92,145,.08); }
+    .sample-link img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .25s ease; }
+    .sample-link:hover img { transform:scale(1.04); }
+    .sample-link:focus-visible,.page-button:focus-visible { outline:3px solid #8599bc; outline-offset:3px; }
+    .sample-pagination { display:flex; justify-content:center; align-items:center; gap:16px; margin-top:17px; }
+    .page-button { display:grid; width:38px; height:38px; place-items:center; border:1px solid rgba(133,153,188,.45); border-radius:50%; background:rgba(255,255,255,.8); color:#6259a0; font-size:27px; line-height:1; cursor:pointer; transition:background .2s ease,transform .2s ease; }
+    .page-button:hover { background:#e8e4fa; transform:translateY(-1px); }
+    .page-button:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+    .page-status { min-width:42px; color:#696982; font-size:13px; font-variant-numeric:tabular-nums; text-align:center; }
+    @media (prefers-reduced-motion:reduce) { .sample-link img,.page-button { transition:none; } }
     .card {
       position:relative; overflow:hidden; padding:26px 27px 28px;
       border:1px solid var(--line); border-radius:20px;
@@ -97,6 +111,37 @@
       </div>
     </header>
 
+    <section class="samples" aria-labelledby="samples-title">
+      <h2 class="samples-title" id="samples-title">일러스트 샘플</h2>
+      <div class="sample-pages" aria-live="polite">
+        <div class="sample-page" data-page="1">
+          <div class="sample-grid">
+            <a class="sample-link" href="sample-01.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 1 원본 이미지를 새 탭에서 보기"><img src="sample-01.jpg" alt="하트 풍선을 든 분홍 머리 캐릭터 일러스트" loading="lazy"></a>
+            <a class="sample-link" href="sample-02.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 2 원본 이미지를 새 탭에서 보기"><img src="sample-02.jpg" alt="보라색 머리 캐릭터 일러스트" loading="lazy"></a>
+            <a class="sample-link" href="sample-03.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 3 원본 이미지를 새 탭에서 보기"><img src="sample-03.png" alt="벚꽃 배경의 캐릭터 일러스트" loading="lazy"></a>
+            <a class="sample-link" href="sample-04.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 4 원본 이미지를 새 탭에서 보기"><img src="sample-04.jpg" alt="보라색 나비 장식과 캐릭터 일러스트" loading="lazy"></a>
+            <a class="sample-link" href="sample-05.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 5 원본 이미지를 새 탭에서 보기"><img src="sample-05.png" alt="검은 머리와 붉은 눈의 캐릭터 일러스트" loading="lazy"></a>
+            <a class="sample-link" href="sample-06.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 6 원본 이미지를 새 탭에서 보기"><img src="sample-06.jpg" alt="붉은 머리 캐릭터 일러스트" loading="lazy"></a>
+          </div>
+        </div>
+        <div class="sample-page" data-page="2" hidden>
+          <div class="sample-grid">
+            <a class="sample-link" href="sample-07.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 7 원본 이미지를 새 탭에서 보기"><img src="sample-07.jpg" alt="회색 머리와 청록색 눈의 캐릭터 일러스트" loading="lazy"></a>
+            <a class="sample-link" href="sample-08.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 8 원본 이미지를 새 탭에서 보기"><img src="sample-08.jpg" alt="검은 머리의 무사 캐릭터 일러스트" loading="lazy"></a>
+            <a class="sample-link" href="sample-09.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 9 원본 이미지를 새 탭에서 보기"><img src="sample-09.png" alt="푸른 하늘 아래 붉은 머리 캐릭터 일러스트" loading="lazy"></a>
+            <div class="sample-placeholder" aria-label="추가 예정 샘플"></div>
+            <div class="sample-placeholder" aria-label="추가 예정 샘플"></div>
+            <div class="sample-placeholder" aria-label="추가 예정 샘플"></div>
+          </div>
+        </div>
+      </div>
+      <nav class="sample-pagination" aria-label="샘플 갤러리 페이지 이동">
+        <button class="page-button" type="button" data-page-direction="prev" aria-label="이전 페이지">‹</button>
+        <span class="page-status" aria-live="polite">1 / 2</span>
+        <button class="page-button" type="button" data-page-direction="next" aria-label="다음 페이지">›</button>
+      </nav>
+    </section>
+
     <section class="grid" aria-label="커미션 안내 사항">
       <article class="card">
         <span class="number">01</span>
@@ -149,8 +194,30 @@
       });
     });
   </script>
+  <script>
+    (() => {
+      const pages = Array.from(document.querySelectorAll('.sample-page'));
+      const status = document.querySelector('.page-status');
+      const buttons = document.querySelectorAll('[data-page-direction]');
+      let current = 0;
+      const showPage = (index) => {
+        current = (index + pages.length) % pages.length;
+        pages.forEach((page, i) => { page.hidden = i !== current; });
+        status.textContent = `${current + 1} / ${pages.length}`;
+      };
+      buttons.forEach((button) => button.addEventListener('click', () => {
+        showPage(current + (button.dataset.pageDirection === 'next' ? 1 : -1));
+      }));
+      showPage(0);
+    })();
+  </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
