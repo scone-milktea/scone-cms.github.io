@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e9e4ff">
+  <title>SCONE 커미션 안내</title>
+  <style>
+    @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+    @font-face {
+      font-family: 'Cafe24ShiningStar';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Shiningstar.woff') format('woff');
+      font-weight: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'NostalgicDongguri';
+      src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2609271756@griun-donguri-rg/griun-donguri-rg/Griun_Donguri-Rg.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }    :root { color-scheme: light; --ink:#35334a; --muted:#696982; --purple:#8b79c8; --line:rgba(255,255,255,.78); }
+    * { box-sizing:border-box; }
+    body {
+      min-height:100vh; margin:0; padding:0 20px 48px; color:var(--ink);
+      background:linear-gradient(180deg,#fff 0%,#dff4ff 52%,#e9e1ff 100%);
+      font-family:"Pretendard",sans-serif;
+      line-height:1.75; letter-spacing:-.02em;
+    }
+    main { width:min(100%,900px); margin:0 auto; }
+    .intro {
+      position:relative; overflow:hidden; width:100vw; aspect-ratio:3035 / 1097;
+      margin:0 calc(50% - 50vw) 30px; background:transparent;
+    }
+    .intro-image { display:block; width:100%; height:100%; object-fit:cover; -webkit-mask-image:linear-gradient(to bottom,#000 52%,transparent 100%); mask-image:linear-gradient(to bottom,#000 52%,transparent 100%); }
+    .intro-copy { position:absolute; top:50%; right:9%; width:38%; transform:translateY(-50%); display:flex; flex-direction:column; align-items:flex-end; gap:5px; text-align:right; }
+    .eyebrow { margin:0; color:#7666b3; font-size:18px; font-weight:800; letter-spacing:.2em; }
+    h1 { margin:0; color:#8599bc; background:linear-gradient(90deg,#e0d3f2,#8599bc); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; font-size:clamp(28px,4.5vw,44px); line-height:1.25; letter-spacing:-.06em; font-family:"NostalgicDongguri","Pretendard",sans-serif; }
+    .subtitle { position:relative; top:-3px; margin:0; color:#9b9ab2; font-size:calc(22px - 2pt); font-family:"Pretendard",sans-serif; }
+    .grid { display:grid; grid-template-columns:1fr; gap:16px; }
+    .card {
+      position:relative; overflow:hidden; padding:26px 27px 28px;
+      border:1px solid var(--line); border-radius:20px;
+      background:rgba(255,255,255,.6); box-shadow:0 10px 30px rgba(93,92,145,.10);
+      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    }
+    .card::before {
+      position:absolute; z-index:0; inset:0; border-radius:inherit;
+      background:radial-gradient(circle 85px at var(--glow-x,50%) var(--glow-y,50%),rgba(190,231,255,.62) 0%,rgba(210,239,255,.30) 45%,rgba(224,214,255,0) 100%);
+      content:""; opacity:0; pointer-events:none; transition:opacity .22s ease;
+    }
+    .card:hover::before,.card:focus-within::before { opacity:1; }
+    .card > * { position:relative; z-index:1; }
+    .card:focus-within { outline:2px solid rgba(139,121,200,.42); outline-offset:2px; }
+    @media (prefers-reduced-motion:reduce) { .card::before { transition:none; } }
+    .number {
+      display:inline-grid; width:34px; height:34px; margin-bottom:12px; place-items:center;
+      border:1px solid rgba(255,255,255,.8); border-radius:50%;
+      background:linear-gradient(135deg,#ded4ff,#cdeeff); color:#6259a0; font-size:12px; font-weight:800;
+    }
+    h2 { margin:0 0 15px; font-size:19px; letter-spacing:-.04em; }
+    p { margin:0 0 12px; font-size:14px; }
+    p:last-child { margin-bottom:0; }
+    strong { color:#3c3a58; font-weight:750; }
+    .note { color:var(--muted); font-size:13px; }
+    .item { padding:11px 0; border-top:1px solid rgba(135,133,179,.15); }
+    .item:first-of-type { padding-top:0; border-top:0; }
+    .item strong { display:block; margin-bottom:2px; }
+    .flow { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin:2px 0 14px; }
+    .step { padding:9px 14px; border:1px solid rgba(151,180,223,.55); border-radius:999px; background:linear-gradient(135deg,rgba(226,216,255,.92),rgba(205,235,255,.96)); font-size:14px; font-weight:700; white-space:nowrap; }
+    .arrow { color:#8c83bd; font-size:16px; }
+    .form-list { margin:0; padding:0; list-style:none; counter-reset:form; }
+    .form-list li { display:flex; gap:9px; padding:7px 0; border-top:1px solid rgba(135,133,179,.15); font-size:14px; counter-increment:form; }
+    .form-list li:first-child { padding-top:0; border-top:0; }
+    .form-list li::before { flex:0 0 22px; color:#7666b3; font-weight:800; content:counter(form) "."; }
+    .sub { display:block; color:var(--muted); font-size:12px; font-weight:500; }
+    .footer { margin:20px 0 0; color:#716e91; font-size:12px; text-align:center; }
+    @media (max-width:640px) {
+      body { padding:0 14px 30px; }
+      .intro { margin-bottom:20px; }
+      .intro-copy { right:8%; width:43%; gap:3px; }
+      .eyebrow { margin:0; font-size:13.5px; }
+      h1 { font-size:clamp(20px,6vw,27px); }
+      .subtitle { top:-2px; font-size:calc(15.5px - 2pt); line-height:1.4; }
+      .grid { gap:12px; }
+      .card { padding:22px 21px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="intro">
+      <img class="intro-image" src="commission-banner.jpg" alt="연보라색 머리 캐릭터 일러스트 배너">
+      <div class="intro-copy">
+        <p class="eyebrow">SCONE COMMISSION</p>
+        <h1>따뜻한 캐주얼 일러스트</h1>
+        <p class="subtitle">커미션 신청 전 읽어주세요</p>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="커미션 안내 사항">
+      <article class="card">
+        <span class="number">01</span>
+        <h2>작업 안내</h2>
+        <div class="item"><strong>기본 사이즈: 가로 3000px / 300dpi</strong><span class="note">(용도에 따라 세로 사이즈 및 해상도 조절합니다)</span></div>
+        <div class="item"><strong>오마카세 가능</strong><p>캐릭터 레퍼런스만 제시해주시면 나머지는 캐릭터 분위기에 맞춰서 진행합니다</p></div>
+        <div class="item"><strong>커버곡은 방송용으로 신청해주세요</strong></div>
+        <div class="item"><strong>작업물은 포트폴리오에 사용될 수 있습니다.</strong></div>
+      </article>
+      <article class="card">
+        <span class="number">02</span>
+        <h2>PNG 및 캐릭터 &amp; 배경 분리 관련</h2>
+        <p>신청 시에 요청하지 않은 경우, 완성 후 분리 작업은 불가능합니다.</p>
+        <p>기본적으로 캐릭터에 가려진 배경은 작업하지 않고 있습니다.</p>
+      </article>
+      <article class="card">
+        <span class="number">03</span>
+        <h2>작업 과정</h2>
+        <div class="flow" aria-label="문의 및 신청, 결제, 러프작업 및 전달, 완성본 전달">
+          <span class="step">문의 및 신청</span><span class="arrow" aria-hidden="true">&gt;</span>
+          <span class="step">결제</span><span class="arrow" aria-hidden="true">&gt;</span>
+          <span class="step">러프작업 및 전달</span><span class="arrow" aria-hidden="true">&gt;</span>
+          <span class="step">완성본 전달</span>
+        </div>
+        <p class="note">양식에 맞춰서 신청해주시면 감사합니다</p>
+      </article>
+      <article class="card">
+        <span class="number">04</span>
+        <h2>신청양식</h2>
+        <ol class="form-list">
+          <li><strong>신청자명/입금자명:</strong></li>
+          <li><strong>원하는 타입 및 사용 용도:</strong></li>
+          <li><strong>캐릭터 자료 <span class="sub">(이미지 첨부 필수입니다)</span></strong></li>
+          <li><strong>디테일 요청 사항 <span class="sub">(예: 이 부분은 더 신경 써주세요)</span></strong></li>
+          <li><strong>포즈 및 표정,상황 설명</strong></li>
+          <li><strong>그림 사이즈</strong></li>
+          <li><strong>투명화 작업 유무</strong></li>
+          <li><strong>포트폴리오 공개 가능 날짜</strong></li>
+        </ol>
+      </article>
+    </section>
+    <p class="footer">신청 전 안내 사항을 꼭 확인해 주세요. 감사합니다.</p>
+  </main>
+  <script>
+    document.querySelectorAll(".card").forEach((card) => {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--glow-x", `${event.clientX - rect.left}px`);
+        card.style.setProperty("--glow-y", `${event.clientY - rect.top}px`);
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
