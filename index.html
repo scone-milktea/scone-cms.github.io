@@ -39,18 +39,25 @@
     .grid { display:grid; grid-template-columns:1fr; gap:16px; }
     .samples { margin:0 0 28px; }
     .samples-title { margin:0 0 14px; color:#4e4568; font-size:22px; }
-    .sample-page[hidden] { display:none; }
-    .sample-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:14px; }
-    .sample-link,.sample-placeholder { display:block; overflow:hidden; aspect-ratio:1/1; border:1px solid rgba(255,255,255,.9); border-radius:16px; background:#fff; box-shadow:0 8px 22px rgba(93,92,145,.08); }
+    .sample-filters { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 8px; }
+    .filter-button { padding:6px 13px; border:1px solid rgba(133,153,188,.38); border-radius:999px; background:rgba(255,255,255,.72); color:#696982; font:600 13px "Pretendard",sans-serif; cursor:pointer; transition:background .2s ease,color .2s ease; }
+    .filter-button:hover,.filter-button.is-active { border-color:transparent; background:linear-gradient(100deg,#e0d3f2,#cfeeff); color:#4e4568; }
+    .filter-button:focus-visible,.page-button:focus-visible,.sample-link:focus-visible { outline:3px solid #8599bc; outline-offset:3px; }
+    .tag-edit-note { margin:0 0 14px; color:#817f98; font-size:12px; line-height:1.6; }
+    .tag-edit-note code { padding:1px 4px; border-radius:4px; background:rgba(255,255,255,.65); color:#6259a0; }
+    .sample-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .sample-link,.sample-placeholder { position:relative; display:block; overflow:hidden; aspect-ratio:2/3; border:1px solid rgba(255,255,255,.9); border-radius:16px; background:#fff; box-shadow:0 8px 22px rgba(93,92,145,.08); }
     .sample-link img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .25s ease; }
     .sample-link:hover img { transform:scale(1.04); }
-    .sample-link:focus-visible,.page-button:focus-visible { outline:3px solid #8599bc; outline-offset:3px; }
+    .sample-tags { position:absolute; right:8px; bottom:8px; left:8px; display:flex; flex-wrap:wrap; gap:5px; pointer-events:none; }
+    .sample-tag { padding:3px 8px; border:1px solid rgba(255,255,255,.68); border-radius:999px; background:rgba(64,58,91,.72); color:#fff; font-size:11px; line-height:1.5; }
+    .sample-empty { margin:24px 0; color:#696982; font-size:14px; text-align:center; }
     .sample-pagination { display:flex; justify-content:center; align-items:center; gap:16px; margin-top:17px; }
     .page-button { display:grid; width:38px; height:38px; place-items:center; border:1px solid rgba(133,153,188,.45); border-radius:50%; background:rgba(255,255,255,.8); color:#6259a0; font-size:27px; line-height:1; cursor:pointer; transition:background .2s ease,transform .2s ease; }
     .page-button:hover { background:#e8e4fa; transform:translateY(-1px); }
     .page-button:disabled { opacity:.4; cursor:not-allowed; transform:none; }
     .page-status { min-width:42px; color:#696982; font-size:13px; font-variant-numeric:tabular-nums; text-align:center; }
-    @media (prefers-reduced-motion:reduce) { .sample-link img,.page-button { transition:none; } }
+    @media (prefers-reduced-motion:reduce) { .sample-link img,.page-button,.filter-button { transition:none; } }
     .card {
       position:relative; overflow:hidden; padding:26px 27px 28px;
       border:1px solid var(--line); border-radius:20px;
@@ -113,28 +120,28 @@
 
     <section class="samples" aria-labelledby="samples-title">
       <h2 class="samples-title" id="samples-title">일러스트 샘플</h2>
-      <div class="sample-pages" aria-live="polite">
-        <div class="sample-page" data-page="1">
-          <div class="sample-grid">
-            <a class="sample-link" href="sample-01.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 1 원본 이미지를 새 탭에서 보기"><img src="sample-01.jpg" alt="하트 풍선을 든 분홍 머리 캐릭터 일러스트" loading="lazy"></a>
-            <a class="sample-link" href="sample-02.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 2 원본 이미지를 새 탭에서 보기"><img src="sample-02.jpg" alt="보라색 머리 캐릭터 일러스트" loading="lazy"></a>
-            <a class="sample-link" href="sample-03.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 3 원본 이미지를 새 탭에서 보기"><img src="sample-03.png" alt="벚꽃 배경의 캐릭터 일러스트" loading="lazy"></a>
-            <a class="sample-link" href="sample-04.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 4 원본 이미지를 새 탭에서 보기"><img src="sample-04.jpg" alt="보라색 나비 장식과 캐릭터 일러스트" loading="lazy"></a>
-            <a class="sample-link" href="sample-05.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 5 원본 이미지를 새 탭에서 보기"><img src="sample-05.png" alt="검은 머리와 붉은 눈의 캐릭터 일러스트" loading="lazy"></a>
-            <a class="sample-link" href="sample-06.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 6 원본 이미지를 새 탭에서 보기"><img src="sample-06.jpg" alt="붉은 머리 캐릭터 일러스트" loading="lazy"></a>
-          </div>
-        </div>
-        <div class="sample-page" data-page="2" hidden>
-          <div class="sample-grid">
-            <a class="sample-link" href="sample-07.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 7 원본 이미지를 새 탭에서 보기"><img src="sample-07.jpg" alt="회색 머리와 청록색 눈의 캐릭터 일러스트" loading="lazy"></a>
-            <a class="sample-link" href="sample-08.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 8 원본 이미지를 새 탭에서 보기"><img src="sample-08.jpg" alt="검은 머리의 무사 캐릭터 일러스트" loading="lazy"></a>
-            <a class="sample-link" href="sample-09.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 9 원본 이미지를 새 탭에서 보기"><img src="sample-09.png" alt="푸른 하늘 아래 붉은 머리 캐릭터 일러스트" loading="lazy"></a>
-            <div class="sample-placeholder" aria-label="추가 예정 샘플"></div>
-            <div class="sample-placeholder" aria-label="추가 예정 샘플"></div>
-            <div class="sample-placeholder" aria-label="추가 예정 샘플"></div>
-          </div>
-        </div>
+      <div class="sample-filters" role="group" aria-label="샘플 해시태그 필터">
+        <button class="filter-button is-active" type="button" data-tag-filter="all" aria-pressed="true">전체</button>
+        <button class="filter-button" type="button" data-tag-filter="여캐" aria-pressed="false">#여캐</button>
+        <button class="filter-button" type="button" data-tag-filter="남캐" aria-pressed="false">#남캐</button>
+        <button class="filter-button" type="button" data-tag-filter="반신" aria-pressed="false">#반신</button>
+        <button class="filter-button" type="button" data-tag-filter="전신" aria-pressed="false">#전신</button>
       </div>
+      <p class="tag-edit-note">각 그림의 태그는 HTML에서 해당 샘플의 <code>data-tags</code> 값으로 설정할 수 있어요. 예: <code>data-tags="여캐 반신"</code></p>
+      <div class="sample-grid" id="sample-grid" aria-live="polite">
+        <!-- 이미지마다 data-tags="여캐 남캐 반신 전신" 중 해당 태그를 입력하세요. 비워두면 태그가 지정되지 않습니다. -->
+        <a class="sample-link" data-tags="" href="sample-10.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-10.png" alt="할로윈 분위기의 남색 머리 늑대 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="" href="sample-01.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-01.jpg" alt="하트 풍선을 든 분홍 머리 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="" href="sample-02.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-02.jpg" alt="보라색 머리 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="" href="sample-03.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-03.png" alt="벚꽃 배경의 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="" href="sample-04.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-04.jpg" alt="보라색 나비 장식과 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="" href="sample-05.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-05.png" alt="검은 머리와 붉은 눈의 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="" href="sample-06.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-06.jpg" alt="붉은 머리 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="" href="sample-07.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-07.jpg" alt="회색 머리와 청록색 눈의 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="" href="sample-08.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-08.jpg" alt="검은 머리의 무사 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="" href="sample-09.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-09.png" alt="푸른 하늘 아래 붉은 머리 캐릭터 일러스트" loading="lazy"></a>
+      </div>
+      <p class="sample-empty" hidden>선택한 해시태그에 해당하는 샘플이 없습니다.</p>
       <nav class="sample-pagination" aria-label="샘플 갤러리 페이지 이동">
         <button class="page-button" type="button" data-page-direction="prev" aria-label="이전 페이지">‹</button>
         <span class="page-status" aria-live="polite">1 / 2</span>
@@ -196,23 +203,77 @@
   </script>
   <script>
     (() => {
-      const pages = Array.from(document.querySelectorAll('.sample-page'));
+      const grid = document.querySelector('#sample-grid');
+      const allCards = Array.from(grid.querySelectorAll('.sample-link'));
+      const filters = Array.from(document.querySelectorAll('[data-tag-filter]'));
+      const prev = document.querySelector('[data-page-direction="prev"]');
+      const next = document.querySelector('[data-page-direction="next"]');
       const status = document.querySelector('.page-status');
-      const buttons = document.querySelectorAll('[data-page-direction]');
-      let current = 0;
-      const showPage = (index) => {
-        current = (index + pages.length) % pages.length;
-        pages.forEach((page, i) => { page.hidden = i !== current; });
-        status.textContent = `${current + 1} / ${pages.length}`;
+      const empty = document.querySelector('.sample-empty');
+      const pageSize = 6;
+      let selectedTag = 'all';
+      let currentPage = 0;
+      const placeholders = 3;
+
+      allCards.forEach((card) => {
+        const tags = (card.dataset.tags || '').trim().split(/\s+/).filter(Boolean);
+        if (tags.length) {
+          const list = document.createElement('span');
+          list.className = 'sample-tags';
+          list.setAttribute('aria-label', '이미지 해시태그');
+          tags.forEach((tag) => {
+            const chip = document.createElement('span');
+            chip.className = 'sample-tag';
+            chip.textContent = `#${tag.replace(/^#/, '')}`;
+            list.appendChild(chip);
+          });
+          card.appendChild(list);
+        }
+      });
+
+      const render = () => {
+        const matched = allCards.filter((card) => selectedTag === 'all' || (card.dataset.tags || '').split(/\s+/).includes(selectedTag));
+        const pageCount = Math.max(1, Math.ceil(matched.length / pageSize));
+        currentPage = Math.min(currentPage, pageCount - 1);
+        const start = currentPage * pageSize;
+        const pageCards = matched.slice(start, start + pageSize);
+        const pageItems = [...pageCards];
+        if (selectedTag === 'all' && currentPage === pageCount - 1) {
+          const remaining = Math.min(placeholders, pageSize - pageItems.length);
+          for (let i = 0; i < remaining; i += 1) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'sample-placeholder';
+            placeholder.setAttribute('aria-label', '추가 예정 샘플');
+            pageItems.push(placeholder);
+          }
+        }
+        grid.replaceChildren(...pageItems);
+        empty.hidden = matched.length > 0;
+        status.textContent = `${currentPage + 1} / ${pageCount}`;
+        prev.disabled = currentPage === 0 || pageCount === 1;
+        next.disabled = currentPage >= pageCount - 1 || pageCount === 1;
       };
-      buttons.forEach((button) => button.addEventListener('click', () => {
-        showPage(current + (button.dataset.pageDirection === 'next' ? 1 : -1));
+
+      filters.forEach((button) => button.addEventListener('click', () => {
+        selectedTag = button.dataset.tagFilter;
+        currentPage = 0;
+        filters.forEach((filter) => {
+          const active = filter === button;
+          filter.classList.toggle('is-active', active);
+          filter.setAttribute('aria-pressed', String(active));
+        });
+        render();
       }));
-      showPage(0);
+      prev.addEventListener('click', () => { currentPage -= 1; render(); });
+      next.addEventListener('click', () => { currentPage += 1; render(); });
+      render();
     })();
   </script>
 </body>
 </html>
+
+
+
 
 
 
