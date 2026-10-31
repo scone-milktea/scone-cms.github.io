@@ -130,7 +130,7 @@
       <p class="tag-edit-note">각 그림의 태그는 HTML에서 해당 샘플의 <code>data-tags</code> 값으로 설정할 수 있어요. 예: <code>data-tags="여캐 반신"</code></p>
       <div class="sample-grid" id="sample-grid" aria-live="polite">
         <!-- 이미지마다 data-tags="여캐 남캐 반신 전신" 중 해당 태그를 입력하세요. 비워두면 태그가 지정되지 않습니다. -->
-        <a class="sample-link" data-tags="#남캐 #반신" href="sample-10.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-10.png" alt="할로윈 분위기의 남색 머리 늑대 캐릭터 일러스트" loading="lazy"></a>
+        <a class="sample-link" data-tags="#남캐 #전신" href="sample-10.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-10.png" alt="할로윈 분위기의 남색 머리 늑대 캐릭터 일러스트" loading="lazy"></a>
         <a class="sample-link" data-tags="#여캐 #전신" href="sample-01.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-01.jpg" alt="하트 풍선을 든 분홍 머리 캐릭터 일러스트" loading="lazy"></a>
         <a class="sample-link" data-tags="#여캐 #전신" href="sample-02.jpg" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-02.jpg" alt="보라색 머리 캐릭터 일러스트" loading="lazy"></a>
         <a class="sample-link" data-tags="#여캐 #반신" href="sample-03.png" target="_blank" rel="noopener noreferrer" aria-label="샘플 원본 이미지를 새 탭에서 보기"><img src="sample-03.png" alt="벚꽃 배경의 캐릭터 일러스트" loading="lazy"></a>
@@ -214,9 +214,10 @@
       let selectedTag = 'all';
       let currentPage = 0;
       const placeholders = 3;
+      const parseTags = (value) => value.split(/[\s,]+/).map((tag) => tag.replace(/^#/, "")).filter(Boolean);
 
       allCards.forEach((card) => {
-        const tags = (card.dataset.tags || '').trim().split(/\s+/).filter(Boolean);
+        const tags = parseTags(card.dataset.tags || '');
         if (tags.length) {
           const list = document.createElement('span');
           list.className = 'sample-tags';
@@ -232,7 +233,7 @@
       });
 
       const render = () => {
-        const matched = allCards.filter((card) => selectedTag === 'all' || (card.dataset.tags || '').split(/\s+/).includes(selectedTag));
+        const matched = allCards.filter((card) => selectedTag === 'all' || parseTags(card.dataset.tags || '').includes(selectedTag));
         const pageCount = Math.max(1, Math.ceil(matched.length / pageSize));
         currentPage = Math.min(currentPage, pageCount - 1);
         const start = currentPage * pageSize;
@@ -271,6 +272,10 @@
   </script>
 </body>
 </html>
+
+
+
+
 
 
 
